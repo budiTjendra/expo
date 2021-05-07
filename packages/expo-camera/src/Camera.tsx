@@ -116,7 +116,6 @@ export default class Camera extends React.Component<CameraProps> {
   static async requestPermissionsAsync(
     permission: CameraPermission = CameraPermission.all
   ): Promise<PermissionResponse> {
-    console.log({ permission, videoOnly: CameraPermission.videoOnly });
     if (permission === CameraPermission.videoOnly) {
       return CameraManager.requestVideoPermissionsAsync();
     }
