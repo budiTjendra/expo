@@ -7,6 +7,7 @@ import {
   CameraCapturedPicture,
   CameraMountError,
   CameraNativeProps,
+  CameraPermission,
   CameraPictureOptions,
   CameraProps,
   CameraRecordingOptions,
@@ -91,6 +92,7 @@ export default class Camera extends React.Component<CameraProps> {
     WhiteBalance: CameraManager.WhiteBalance,
     VideoQuality: CameraManager.VideoQuality,
     VideoStabilization: CameraManager.VideoStabilization || {},
+    Permission: CameraManager.Permission,
   };
 
   // Values under keys from this object will be transformed to native options
@@ -111,7 +113,14 @@ export default class Camera extends React.Component<CameraProps> {
     return CameraManager.getPermissionsAsync();
   }
 
-  static async requestPermissionsAsync(): Promise<PermissionResponse> {
+  static async requestPermissionsAsync(
+    permission: CameraPermission = CameraPermission.all
+  ): Promise<PermissionResponse> {
+    console.log({ permission, videoOnly: CameraPermission.videoOnly });
+    if (permission === CameraPermission.videoOnly) {
+      return CameraManager.requestVideoPermissionsAsync();
+    }
+
     return CameraManager.requestPermissionsAsync();
   }
 

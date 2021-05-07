@@ -56,6 +56,11 @@ typedef NS_ENUM(NSInteger, EXCameraVideoResolution) {
   EXCameraVideo4x3 = 3,
 };
 
+typedef NS_ENUM(NSInteger, EXCameraPermission) {
+  EXCameraPermissionAll = 0,
+  EXCameraPermissionVideoOnly = 1,
+};
+
 @interface EXCamera : UIView <AVCaptureMetadataOutputObjectsDelegate, AVCaptureFileOutputRecordingDelegate, UMAppLifecycleListener, UMCameraInterface, AVCapturePhotoCaptureDelegate>
 
 @property (nonatomic, strong) dispatch_queue_t sessionQueue;

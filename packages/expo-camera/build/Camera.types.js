@@ -88,5 +88,10 @@ export var ImageType;
     ImageType["png"] = "png";
     ImageType["jpg"] = "jpg";
 })(ImageType || (ImageType = {}));
+export var CameraPermission;
+(function (CameraPermission) {
+    CameraPermission[CameraPermission["all"] = 0] = "all";
+    CameraPermission[CameraPermission["videoOnly"] = 1] = "videoOnly";
+})(CameraPermission || (CameraPermission = {}));
 export { PermissionStatus };
 //# sourceMappingURL=Camera.types.js.map

@@ -2,6 +2,7 @@
 #import <EXCamera/EXCameraManager.h>
 #import <EXCamera/EXCameraUtils.h>
 #import <EXCamera/EXCameraPermissionRequester.h>
+#import <ExCamera/ExCameraVideoPermissionRequester.h>
 
 #import <UMCore/UMUIManager.h>
 #import <UMFileSystemInterface/UMFileSystemInterface.h>
@@ -32,6 +33,7 @@ UM_EXPORT_MODULE(ExponentCameraManager);
   _uiManager = [moduleRegistry getModuleImplementingProtocol:@protocol(UMUIManager)];
   _permissionsManager = [moduleRegistry getModuleImplementingProtocol:@protocol(UMPermissionsInterface)];
   [UMPermissionsMethodsDelegate registerRequesters:@[[EXCameraPermissionRequester new]] withPermissionsManager:_permissionsManager];
+  [UMPermissionsMethodsDelegate registerRequesters:@[[EXCameraVideoPermissionRequester new]] withPermissionsManager:_permissionsManager];
 }
 
 - (UIView *)view
@@ -72,6 +74,10 @@ UM_EXPORT_MODULE(ExponentCameraManager);
                @"standard": @(EXCameraVideoStabilizationModeStandard),
                @"cinematic": @(EXCameraVideoStabilizationModeCinematic),
                @"auto": @(EXCameraAVCaptureVideoStabilizationModeAuto)
+               },
+           @"Permission": @{
+               @"all": @(EXCameraPermissionAll),
+               @"videoOnly": @(EXCameraPermissionVideoOnly),
                },
            };
 }
@@ -346,6 +352,26 @@ UM_EXPORT_METHOD_AS(requestPermissionsAsync,
 {
   [UMPermissionsMethodsDelegate askForPermissionWithPermissionsManager:_permissionsManager
                                                          withRequester:[EXCameraPermissionRequester class]
+                                                               resolve:resolve
+                                                                reject:reject];
+}
+
+UM_EXPORT_METHOD_AS(getVideoPermissionsAsync,
+                    getVideoPermissionsAsync:(UMPromiseResolveBlock)resolve
+                    rejecter:(UMPromiseRejectBlock)reject)
+{
+  [UMPermissionsMethodsDelegate getPermissionWithPermissionsManager:_permissionsManager
+                                                      withRequester:[EXCameraVideoPermissionRequester class]
+                                                            resolve:resolve
+                                                             reject:reject];
+}
+
+UM_EXPORT_METHOD_AS(requestVideoPermissionsAsync,
+                    requestVideoPermissionsAsync:(UMPromiseResolveBlock)resolve
+                    rejecter:(UMPromiseRejectBlock)reject)
+{
+  [UMPermissionsMethodsDelegate askForPermissionWithPermissionsManager:_permissionsManager
+                                                         withRequester:[EXCameraVideoPermissionRequester class]
                                                                resolve:resolve
                                                                 reject:reject];
 }

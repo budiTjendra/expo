@@ -84,6 +84,10 @@ export declare enum ImageType {
     png = "png",
     jpg = "jpg"
 }
+export declare enum CameraPermission {
+    all = 0,
+    videoOnly = 1
+}
 export declare type ImageParameters = {
     imageType: ImageType;
     quality: number | null;
@@ -199,6 +203,7 @@ export declare type ConstantsType = {
     WhiteBalance: typeof WhiteBalance;
     VideoQuality: any;
     VideoStabilization: any;
+    Permission: typeof CameraPermission;
 };
 export declare type CameraProps = ViewProps & {
     type?: number | keyof typeof CameraType;

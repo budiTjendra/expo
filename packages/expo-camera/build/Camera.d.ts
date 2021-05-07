@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BarCodeScanningResult, CameraCapturedPicture, CameraMountError, CameraNativeProps, CameraPictureOptions, CameraProps, CameraRecordingOptions, ConstantsType, FaceDetectionResult, PermissionExpiration, PermissionResponse, PermissionStatus } from './Camera.types';
+import { BarCodeScanningResult, CameraCapturedPicture, CameraMountError, CameraNativeProps, CameraPermission, CameraPictureOptions, CameraProps, CameraRecordingOptions, ConstantsType, FaceDetectionResult, PermissionExpiration, PermissionResponse, PermissionStatus } from './Camera.types';
 export default class Camera extends React.Component<CameraProps> {
     static isAvailableAsync(): Promise<boolean>;
     static getAvailableCameraTypesAsync(): Promise<('front' | 'back')[]>;
@@ -12,7 +12,7 @@ export default class Camera extends React.Component<CameraProps> {
     };
     static defaultProps: CameraProps;
     static getPermissionsAsync(): Promise<PermissionResponse>;
-    static requestPermissionsAsync(): Promise<PermissionResponse>;
+    static requestPermissionsAsync(permission?: CameraPermission): Promise<PermissionResponse>;
     _cameraHandle?: number | null;
     _cameraRef?: React.Component | null;
     _lastEvents: {

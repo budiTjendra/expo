@@ -1,7 +1,7 @@
 import { Platform, UnavailabilityError } from '@unimodules/core';
 import * as React from 'react';
 import { findNodeHandle } from 'react-native';
-import { PermissionStatus, } from './Camera.types';
+import { CameraPermission, PermissionStatus, } from './Camera.types';
 import ExponentCamera from './ExponentCamera';
 import CameraManager from './ExponentCameraManager';
 import { ConversionTables, ensureNativeProps } from './utils/props';
@@ -100,7 +100,11 @@ export default class Camera extends React.Component {
     static async getPermissionsAsync() {
         return CameraManager.getPermissionsAsync();
     }
-    static async requestPermissionsAsync() {
+    static async requestPermissionsAsync(permission = CameraPermission.all) {
+        console.log({ permission, videoOnly: CameraPermission.videoOnly });
+        if (permission === CameraPermission.videoOnly) {
+            return CameraManager.requestVideoPermissionsAsync();
+        }
         return CameraManager.requestPermissionsAsync();
     }
     async takePictureAsync(options) {
@@ -160,6 +164,7 @@ Camera.Constants = {
     WhiteBalance: CameraManager.WhiteBalance,
     VideoQuality: CameraManager.VideoQuality,
     VideoStabilization: CameraManager.VideoStabilization || {},
+    Permission: CameraManager.Permission,
 };
 // Values under keys from this object will be transformed to native options
 Camera.ConversionTables = ConversionTables;
