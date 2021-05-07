@@ -159,8 +159,16 @@ PODS:
     - React
   - expo-dev-menu (0.4.1):
     - expo-dev-menu-interface
+    - expo-dev-menu/Main (= 0.4.1)
     - React
   - expo-dev-menu-interface (0.2.0):
+    - React
+  - expo-dev-menu/Main (0.4.1):
+    - expo-dev-menu-interface
+    - expo-dev-menu/Vendored
+    - React
+  - expo-dev-menu/Vendored (0.4.1):
+    - expo-dev-menu-interface
     - React
   - expo-image (1.0.0-alpha.0):
     - React-Core
@@ -1281,7 +1289,7 @@ SPEC CHECKSUMS:
   EXPermissions: 8f8c1c05580c4e02d4ee2c8dd74bfe173ff6a723
   expo-dev-client: e7b6c924dad57d75ae7e0fd18f7dca2d8fb1118a
   expo-dev-launcher: ba817d68d83bffae03beebb59b14341ac27f1833
-  expo-dev-menu: 9cab52a55688aef281dee77a101af83658c59b48
+  expo-dev-menu: 491591fff3e5578a3f9ac9914c9b5f92e91ae1de
   expo-dev-menu-interface: e6f313b7b0c0c79b1987cf26bc5c969bad69bb7d
   expo-image: 07527eb7a57f5ac939c5ded392bcf64c975b9c87
   ExpoModulesCore: efdfa6650a7b554180c1559b7be9c3510ce18e51
